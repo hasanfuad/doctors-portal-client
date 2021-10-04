@@ -53,7 +53,7 @@ const AvailableAppointments = ({date}) => {
 
             <div className="row mt-5 pt-3">
                 {
-                    bookingData.map(bookedData => <AppointmentCards bookedData = {bookedData} date={date} key={bookedData._id}/>)
+                    bookingData.map(bookedData => <AppointmentCards selectedDate={date} bookedData = {bookedData} date={date} key={bookedData._id}/>)
                 }
             </div>
         </section>
