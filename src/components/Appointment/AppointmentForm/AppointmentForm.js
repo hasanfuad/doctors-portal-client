@@ -109,7 +109,7 @@ const AppointmentForm = ({
 
             <input
               style={{ marginLeft: "18rem", height: "40px" }}
-              className="mt-3 mb-3 text-start w-25 btn-brand text-white"
+              className="mt-3 mb-3 text-start w-25 btn-brand text-white btn-brand"
               type="SUBMIT"
               defaultValue="SEND"
             />
