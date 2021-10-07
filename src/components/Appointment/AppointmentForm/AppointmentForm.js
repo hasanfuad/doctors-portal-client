@@ -28,9 +28,25 @@ const AppointmentForm = ({
     watch,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data);
-    modalIsClose();
+    
+    data.service = bookedData;
+    data.date = selectedDate;
+    data.created = new Date();
+    
+    fetch("http://localhost:5000/appointments", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-type": "application/json" },
+    })
+      .then((response) => response.json())
+      .then((success) => {
+        if(success) {
+          modalIsClose();
+          alert("Thanks for the appointment");
+        }
+      });
   };
 
   return (
@@ -43,7 +59,10 @@ const AppointmentForm = ({
           onRequestClose={modalIsClose}
           contentLabel="Example Modal"
         >
-          <h3 className="text-brand mt-3 text-center" style={{ fontSize: "20px" }}>
+          <h3
+            className="text-brand mt-3 text-center"
+            style={{ fontSize: "20px" }}
+          >
             {bookedData.subject}
           </h3>
           <br />
@@ -94,13 +113,17 @@ const AppointmentForm = ({
                 <option value="other">Other</option>
               </select>
               <input
-                type="number" min="1" max="150"
+                type="number"
+                min="1"
+                max="150"
                 className="mt-4 form-input"
                 defaultValue="10"
                 {...register("age")}
               />
               <input
-                type="number" min="1" max="150"
+                type="number"
+                min="1"
+                max="150"
                 className="mt-4 form-input"
                 defaultValue="40"
                 {...register("weight")}
